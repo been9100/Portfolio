@@ -1036,11 +1036,11 @@ html.dark .theme-btn__icon--moon { display: inline-flex; }
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 176px 24px 48px;
+  padding: 176px 24px 176px;   /* 타이틀 기준 상하 여백 동일 */
 }
 @media (min-width: 768px) {
   .hero {
-    padding: 224px 16px 80px;
+    padding: 224px 16px 224px;
   }
 }
 .hero__inner {
