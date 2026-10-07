@@ -71,9 +71,12 @@
         i = (i + 1) % items.length;
         el.textContent = items[i];
         if (langs[i]) el.setAttribute("lang", langs[i]);
+        // 전환 없이 즉시 '아래쪽·투명' 상태로 점프시킨 뒤, 다음 프레임에 전환을 켜고 제자리로 올라오게 한다.
+        el.style.transition = "none";
         el.classList.remove("is-out");
         el.classList.add("is-in");
-        // 다음 프레임에 in 상태 해제 → 페이드 인
+        void el.offsetWidth; // 리플로우로 즉시 상태 반영
+        el.style.transition = "";
         requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove("is-in")));
       }, 500);
     }, interval);

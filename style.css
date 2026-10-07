@@ -363,17 +363,19 @@ html.dark .theme-btn__icon--moon { display: inline-flex; }
 /* 로테이션 텍스트 */
 .rotator {
   display: inline-block;
-  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
+/* 사라질 때: 살짝 위로 올라가며 사라짐 */
 .rotator.is-out {
   opacity: 0;
-  filter: blur(8px);
-  transform: translateY(-6px);
+  filter: blur(2px);
+  transform: translateY(-0.18em);
 }
+/* 나타날 때: 살짝 아래에서 위로 올라오며 나타남 */
 .rotator.is-in {
   opacity: 0;
-  filter: blur(8px);
-  transform: translateY(6px);
+  filter: blur(2px);
+  transform: translateY(0.18em);
 }
 /* p.text-2xl.sm:text-4xl.text-neutral-400/70.pt-1 */
 .hero__sub {
@@ -592,6 +594,7 @@ html.dark .theme-btn__icon--moon { display: inline-flex; }
   fill: currentColor;
   opacity: 0;
   transition: opacity 0.2s ease;
+  display: none;                 /* 화살표 아이콘은 숨김 (좌우 탭 영역과 도트는 그대로 동작) */
 }
 .card:hover .card__nav svg {
   opacity: 1;
