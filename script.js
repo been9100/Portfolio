@@ -78,7 +78,7 @@
         void el.offsetWidth; // 리플로우로 즉시 상태 반영
         el.style.transition = "";
         requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove("is-in")));
-      }, 500);
+      }, 600); // CSS 전환 시간(0.6s)과 맞춤
     }, interval);
   });
 })();
