@@ -58,6 +58,9 @@
     } catch (e) { /* 잘못된 JSON이면 기본 목록 사용 */ }
     if (!items.length) return;
 
+    // 전환 주기(ms): data-interval로 요소별 조정, 기본 3200
+    const interval = parseInt(el.dataset.interval, 10) || 3200;
+
     let i = 0;
     el.textContent = items[i];
     if (langs[i]) el.setAttribute("lang", langs[i]);
@@ -73,7 +76,7 @@
         // 다음 프레임에 in 상태 해제 → 페이드 인
         requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove("is-in")));
       }, 500);
-    }, 3200);
+    }, interval);
   });
 })();
 
