@@ -34,12 +34,11 @@
   });
 })();
 
-/* ---------- 2. 히어로 타이틀 로테이션 ---------- */
-(function initRotator() {
-  const el = document.querySelector("[data-rotator]");
-  if (!el) return;
-  // 원본 hx 배열 그대로
-  const items = [
+/* ---------- 2. 히어로 타이틀 로테이션 ----------
+   [data-rotator] 요소마다 돌아간다. data-items / data-langs(JSON 배열)가 있으면 그 목록을,
+   없으면 Work 페이지 기본 목록("一些精选" …)을 쓴다. */
+(function initRotators() {
+  const DEFAULT_ITEMS = [
     "一些精选",
     "選りすぐりの作品",
     "Some Selections",
@@ -48,24 +47,34 @@
     "Избранные работы",
     "Yīxiē jīngxuǎn",
   ];
-  let i = 0;
-  el.textContent = items[i];
-  el.setAttribute("lang", "zh");
+  const DEFAULT_LANGS = ["zh", "ja", "en", "ko", "de", "ru", "zh-Latn"];
 
-  const langs = ["zh", "ja", "en", "ko", "de", "ru", "zh-Latn"];
+  document.querySelectorAll("[data-rotator]").forEach((el) => {
+    let items = DEFAULT_ITEMS;
+    let langs = DEFAULT_LANGS;
+    try {
+      if (el.dataset.items) items = JSON.parse(el.dataset.items);
+      if (el.dataset.langs) langs = JSON.parse(el.dataset.langs);
+    } catch (e) { /* 잘못된 JSON이면 기본 목록 사용 */ }
+    if (!items.length) return;
 
-  setInterval(() => {
-    el.classList.add("is-out");
-    setTimeout(() => {
-      i = (i + 1) % items.length;
-      el.textContent = items[i];
-      el.setAttribute("lang", langs[i]);
-      el.classList.remove("is-out");
-      el.classList.add("is-in");
-      // 다음 프레임에 in 상태 해제 → 페이드 인
-      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove("is-in")));
-    }, 500);
-  }, 3200);
+    let i = 0;
+    el.textContent = items[i];
+    if (langs[i]) el.setAttribute("lang", langs[i]);
+
+    setInterval(() => {
+      el.classList.add("is-out");
+      setTimeout(() => {
+        i = (i + 1) % items.length;
+        el.textContent = items[i];
+        if (langs[i]) el.setAttribute("lang", langs[i]);
+        el.classList.remove("is-out");
+        el.classList.add("is-in");
+        // 다음 프레임에 in 상태 해제 → 페이드 인
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove("is-in")));
+      }, 500);
+    }, 3200);
+  });
 })();
 
 /* ---------- 3. 갤러리 데이터 ----------
