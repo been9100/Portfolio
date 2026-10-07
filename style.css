@@ -368,13 +368,13 @@ html.dark .theme-btn__icon--moon { display: inline-flex; }
 /* 사라질 때: 살짝 위로 올라가며 사라짐 */
 .rotator.is-out {
   opacity: 0;
-  filter: blur(2px);
+  filter: blur(8px);
   transform: translateY(-0.18em);
 }
 /* 나타날 때: 살짝 아래에서 위로 올라오며 나타남 */
 .rotator.is-in {
   opacity: 0;
-  filter: blur(2px);
+  filter: blur(8px);
   transform: translateY(0.18em);
 }
 /* p.text-2xl.sm:text-4xl.text-neutral-400/70.pt-1 */
