@@ -886,24 +886,24 @@ html.dark .theme-btn__icon--moon { display: inline-flex; }
   width: 100%;
   display: flex;
 }
-/* text-4xl sm:text-5xl md:text-6xl */
+/* text-4xl sm:text-5xl md:text-6xl 의 80% (36→29, 48→38, 60→48) */
 .info-hero__name,
 .info-hero__years {
-  font-size: 36px;
-  line-height: 40px;
+  font-size: 29px;
+  line-height: 32px;
   font-weight: 400;
 }
 @media (min-width: 640px) {
   .info-hero__name,
   .info-hero__years {
-    font-size: 48px;
+    font-size: 38px;
     line-height: 1;
   }
 }
 @media (min-width: 768px) {
   .info-hero__name,
   .info-hero__years {
-    font-size: 60px;
+    font-size: 48px;
     line-height: 1;
   }
 }
